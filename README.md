@@ -3,7 +3,8 @@
   - need a reference card
 - Scratch
   - Slide Show
-  - Slide Show + button/LED
+  - Button + LED
+  - Slide Show + button + LED
   - Video + button/LED (?)
 - Python
   - Slide Show
