@@ -2,8 +2,8 @@
 - Intro to Linux
   - need a reference card
 - Scratch
-  - Slide Show
-  - Button + LED
+  - ~~Slide Show~~
+  - Buttons + LEDs (image)
   - Slide Show + button + LED
   - Video + button/LED (?)
 - Python
