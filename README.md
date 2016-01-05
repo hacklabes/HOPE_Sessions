@@ -1,6 +1,6 @@
-# HOPE_Sessions
+# HOPE_Sessions (TODO)
 - Intro to Linux
-  - need a reference card
+  - Reference card
 - Scratch
   - ~~Slide Show~~
   - Buttons + LEDs (image)
