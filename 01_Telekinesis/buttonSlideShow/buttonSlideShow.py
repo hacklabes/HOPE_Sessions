@@ -8,7 +8,7 @@ import sys
 
 img = []
 for i in range(11):
-    img.append(pygame.image.load('../../Scratch/imgs/strawberry/'+str(i)+'.jpg'))
+    img.append(pygame.image.load('../imgs/strawberry/'+str(i)+'.jpg'))
 
 pygame.init()
 screen = pygame.display.set_mode((370,240))
