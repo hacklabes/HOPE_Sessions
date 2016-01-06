@@ -12,8 +12,8 @@
   - ~~Slide Show + button + LED~~
   - Video + button + LED
 - Camera
-  - Python button take picture
-  - Python button double exposure
+  - ~~Python button take picture~~
+  - ~~Python button double exposure~~
   - Video color subtraction (?)
   - Grab other people's camera script client/server
 - Internet
