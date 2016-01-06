@@ -10,7 +10,7 @@ for i in range(1,4):
     img.append(pygame.image.load('../../Scratch/imgs/Lion'+str(i)+'.jpg'))
 
 pygame.init()
-screen = pygame.display.set_mode((640,480))
+screen = pygame.display.set_mode((480,360))
 screen.fill((0,0,0))
 
 counter = 0
