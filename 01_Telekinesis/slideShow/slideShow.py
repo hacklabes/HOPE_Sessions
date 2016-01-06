@@ -6,8 +6,8 @@ import time
 import sys
 
 img = []
-for i in range(1,4):
-    img.append(pygame.image.load('../imgs/Lion'+str(i)+'.jpg'))
+for i in range(3):
+    img.append(pygame.image.load('../imgs/lion/'+str(i)+'.jpg'))
 
 pygame.init()
 screen = pygame.display.set_mode((480,360))
