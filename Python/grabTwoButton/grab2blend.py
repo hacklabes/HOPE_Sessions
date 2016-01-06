@@ -5,6 +5,7 @@ import sys
 import io
 import numpy as np
 import cv2
+import pygame
 
 if __name__ == "__main__":
 
@@ -17,6 +18,8 @@ if __name__ == "__main__":
     print "Setting up button"
     time.sleep(1)
     bytesStream = io.BytesIO()
+
+    screen = pygame.display.set_mode(list(camera.resolution))
     try:
         
         print "Press the button for the first shot:"
@@ -40,7 +43,17 @@ if __name__ == "__main__":
         print "Image File saved as ", fname
         cv2.imwrite(fname,imageBlend)
 
-        time.sleep(1)
+        camera.stop_preview()
+
+        pygame.init()
+        screen.fill([0,0,0])
+        frame = cv2.cvtColor(imageBlend, cv2.COLOR_BGR2RGB)
+        frame = np.rot90(frame)
+        frame = pygame.surfarray.make_surface(frame)
+        screen.blit(frame, (0,0))
+        pygame.display.update()
+
+        time.sleep(10)
         sys.exit(0)
     except KeyboardInterrupt, SystemExit:
         camera.stop_preview()
