@@ -5,11 +5,11 @@
   - ~~Slide Show~~
   - Buttons + LEDs (image)
   - Slide Show + button + LED
-  - Video + button/LED (?)
+  - ~~Video + button/LED~~ (no video in Scratch)
 - Python
   - Slide Show
   - Slide Show + button/LED
-  - Video + button/LED (?)
+  - Video + button/LED
 - Camera
   - Python button take picture
   - Python button double exposure
