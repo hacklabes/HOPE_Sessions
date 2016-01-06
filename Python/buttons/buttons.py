@@ -13,7 +13,7 @@ rLed = LED(21)
 rButton.when_pressed = rLed.on
 yButton.when_pressed = yLed.on
 
-rBbutton.when_released = rLed.off
-yBbutton.when_released = yLed.off
+rButton.when_released = rLed.off
+yButton.when_released = yLed.off
 
 pause()
