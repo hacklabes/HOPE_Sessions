@@ -6,7 +6,7 @@ from gpiozero import LED, Button
 import time
 import sys
 
-omx = OMXPlayer('../../Scratch/movs/MechanicalPrinciples.mov')
+omx = OMXPlayer('../movs/MechanicalPrinciples.mov')
 
 yButton = Button(6,  pull_up=False, bounce_time=0.05)
 yLed = LED(20)
