@@ -4,8 +4,8 @@
 from gpiozero import LED, Button
 from signal import pause
 
-yButton = Button(6,  pull_up=False, bounce_time=0.05)
-rButton = Button(19, pull_up=False, bounce_time=0.05)
+yButton = Button(6,  pull_up=False, bounce_time=0.01)
+rButton = Button(19, pull_up=False, bounce_time=0.01)
 
 yLed = LED(20)
 rLed = LED(21)

@@ -8,18 +8,18 @@ import sys
 
 img = []
 for i in range(11):
-    img.append(pygame.image.load('../../Scratch/imgs/strawberry/str(i)+'.jpg'))
+    img.append(pygame.image.load('../../Scratch/imgs/strawberry/'+str(i)+'.jpg'))
 
 pygame.init()
-screen = pygame.display.set_mode((640,480))
+screen = pygame.display.set_mode((370,240))
 screen.fill((0,0,0))
 
 counter = 0
 
 yButton = Button(6,  pull_up=False, bounce_time=0.05)
 yLed = LED(20)
-rButton.when_pressed = rLed.on
-yBbutton.when_released = yLed.off
+yButton.when_pressed = yLed.on
+yButton.when_released = yLed.off
                                  
 try:
     while True:
@@ -27,6 +27,7 @@ try:
         screen.blit(img[counter],(0,0))
         pygame.display.flip()
         if yButton.is_pressed:
+            time.sleep(0.1)
             counter = (counter+1)
             if counter > 10:
                 counter = 0
