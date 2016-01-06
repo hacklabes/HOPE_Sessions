@@ -10,7 +10,7 @@
   - ~~Slide Show~~
   - ~~Buttons + LEDs~~
   - ~~Slide Show + button + LED~~
-  - Video + button + LED
+  - ~~Video + button + LED~~
 - Camera
   - ~~Python button take picture~~
   - ~~Python button double exposure~~
