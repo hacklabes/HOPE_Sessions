@@ -8,7 +8,8 @@
   - ~~Video + button/LED~~ (no video in Scratch)
 - Python
   - ~~Slide Show~~
-  - Slide Show + button + LED
+  - ~~Buttons + LEDs~~
+  - ~~Slide Show + button + LED~~
   - Video + button + LED
 - Camera
   - Python button take picture
