@@ -18,8 +18,6 @@ url = "http://api.tumblr.com/v2/tagged?tag=%s&api_key=%s"%(TAG,API_KEY);
 pygame.init()
 # sets up window dimensions (640 pixels wide by 640 pixels tall)
 screen = pygame.display.set_mode((640,640))
-# fill window with color black
-screen.fill((0,0,0))
 
 # variables to control rate of request
 REQUEST_PERIOD = 5.0
@@ -65,6 +63,7 @@ try:
         if time.time() - lastRequest > REQUEST_PERIOD:
             surface = getPhoto()
             lastRequest = time.time()
+
 # this is some magic code that detects when user hits ctrl-c
 except KeyboardInterrupt, SystemExit:
         sys.exit(0)

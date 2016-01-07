@@ -10,8 +10,6 @@ import sys
 pygame.init()
 # sets up window dimensions (370 pixels wide and 240 pixels tall)
 screen = pygame.display.set_mode((370,240))
-# fills window with color black (rgb = 0,0,0)
-screen.fill((0,0,0))
 
 # an array for keeping a collection of images
 img = []
@@ -48,6 +46,7 @@ try:
             # if it goes past 10, reset to 0
             if counter > 10:
                 counter = 0
+
 # this is some magic code that detects when user hits ctrl-c
 except KeyboardInterrupt, SystemExit:
         sys.exit(0)
