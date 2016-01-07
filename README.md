@@ -14,8 +14,8 @@
 - Camera
   - ~~Python button take picture~~
   - ~~Python button double exposure~~
-  - Video color subtraction (?)
+  - Video color subtraction
   - Grab other people's camera script client/server
 - Internet
-  - Grab images from tumblr
+  - ~~Grab images from tumblr~~
   - Tweets + LEDs
