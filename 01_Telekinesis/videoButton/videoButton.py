@@ -31,4 +31,4 @@ while True:
     # when quit button is pressed, stop player and quit programme
     if rButton.is_pressed:
         omx.stop()
-        sys.exit()
+        sys.exit(0)

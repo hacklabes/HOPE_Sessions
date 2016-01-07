@@ -49,5 +49,5 @@ try:
             if counter > 10:
                 counter = 0
 # this is some magic code that detects when user hits ctrl-c
-except KeyboardInterrupt:
-        sys.exit()
+except KeyboardInterrupt, SystemExit:
+        sys.exit(0)
