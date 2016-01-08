@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 import sys
 import time
+import io
 # set up the camera
 time.sleep(1)
 camera = picamera.PiCamera()
@@ -28,10 +29,15 @@ img2 = cv2.imread("mm.jpg")
 img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGBA)
 img2 = np.rot90(img2)
 
+bytesStream = io.BytesIO()
 try:
     while True:
-        ret, frame = camera.read()
-        screen.fill([255,0,0])
+	    bytesStream.seek(0)
+		camera.capture(bytesStream, format='jpeg')
+		data = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
+		frame = cv2.imdecode(data,1)
+  
+		screen.fill([255,0,0])
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         frame = np.rot90(frame)
         mask = cv2.inRange(frame, COLOR_LOW, COLOR_HIGH)
