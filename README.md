@@ -3,7 +3,7 @@
   - Reference card
 - Scratch
   - ~~Slide Show~~
-  - Buttons + LEDs (image)
+  - ~~Buttons + LEDs (image)~~
   - ~~Slide Show + button + LED~~
   - ~~Video + button/LED~~ (no video in Scratch)
 - Python
@@ -14,7 +14,8 @@
 - Camera
   - ~~Python button take picture~~
   - ~~Python button double exposure~~
-  - Video color subtraction
+  - ~~Video color subtraction~~
+  - ~~Video motion detection~~
   - Grab other people's camera script client/server
 - Internet
   - ~~Grab images from tumblr~~
