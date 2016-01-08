@@ -2,16 +2,19 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-import picamera
+import picamera.array
 import cv2
 import numpy as np
 import sys
 import time
-import io
+
 # set up the camera
 time.sleep(1)
 camera = picamera.PiCamera()
-camera.resolution = (1024, 768)
+camera.resolution = (640, 480)
+camera.framerate = 16
+# set up a video stream
+video = picamera.array.PiRGBArray(camera)
 
 # set up pygame, the library for displaying images
 pygame.init()
@@ -28,25 +31,23 @@ img2 = cv2.imread("mm.jpg")
 img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGBA)
 img2 = np.rot90(img2)
 
-bytesStream = io.BytesIO()
 try:
-    while True:
-        bytesStream.seek(0)
-        camera.capture(bytesStream, format='jpg')
-        frame = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
-        frame = cv2.imdecode(frame,1)
+    # keep reading the video stream into frame buffer objects
+    for frameBuf in camera.capture_continuous(video, format="rgb", use_video_port=True):
+        frame = frameBuf.array
 
-        screen.fill([255,0,0])
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2RGBA)
         frame = np.rot90(frame)
         mask = cv2.inRange(frame, COLOR_LOW, COLOR_HIGH)
         frame_bg = cv2.bitwise_and(frame,frame,mask = cv2.bitwise_not(mask))
         img2_fg = cv2.bitwise_and(img2,img2,mask = mask)
-        imageBlend = cv2.add(frame_bg,img2_fg)
+        frame = cv2.cvtColor(cv2.add(frame_bg,img2_fg), cv2.COLOR_RGBA2RGB)
 
-        frame = pygame.surfarray.make_surface(cv2.cvtColor(imageBlend, cv2.COLOR_RGBA2RGB))
-        screen.blit(frame, (0,0))
+        # make a pygame surface from image
+        surface = pygame.surfarray.make_surface(frame)
+        screen.blit(surface, (0,0))
         pygame.display.update()
+        video.truncate(0)
 
         # stop programme if esc key has been pressed
         for event in pygame.event.get():

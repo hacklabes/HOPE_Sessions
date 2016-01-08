@@ -54,7 +54,7 @@ try:
     screen.blit(frame, (0,0))
     pygame.display.update()
 
-    time.sleep(10)
+    time.sleep(5)
     sys.exit(0)
 except KeyboardInterrupt, SystemExit:
     camera.stop_preview()
