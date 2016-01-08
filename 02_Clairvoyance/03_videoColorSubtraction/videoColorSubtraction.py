@@ -55,9 +55,10 @@ try:
         # stop programme if esc key has been pressed
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                sys.exit(0)
+                raise SystemExit
 
 # this is some magic code that detects when user hits ctrl-c (and stops the programme)
 except KeyboardInterrupt,SystemExit:
     pygame.quit()
     cv2.destroyAllWindows()
+    sys.exit(0)

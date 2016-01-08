@@ -74,7 +74,7 @@ try:
 
     # preview image for 3 seconds, then quit
     time.sleep(5)
-    sys.exit(0)
+    raise SystemExit
 
 # this is some magic code that detects when user hits ctrl-c (and stops the programme)
 except KeyboardInterrupt, SystemExit:
