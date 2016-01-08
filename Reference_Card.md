@@ -1,11 +1,11 @@
 ##Linux Command line Reference
 
 ###General
-tab:  
-key-up, -down:  
-ctrl-r:  
+<kbd>tab</kbd>:  
+<kbd>^</kbd>, -down:  
+<kbd>ctrl</kbd>+<kbd>r</kbd>:  
 ``man``:  
-* and *.ext:  
+\* and *.ext:  
 
 ###Navigation
 ``cd``:  
