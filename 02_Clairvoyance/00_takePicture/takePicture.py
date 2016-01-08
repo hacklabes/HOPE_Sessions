@@ -61,6 +61,7 @@ try:
 
 # this is some magic code that detects when user hits ctrl-c (and stops the programme)
 except KeyboardInterrupt, SystemExit:
+    camera.stop_preview()
     pygame.quit()
     cv2.destroyAllWindows()
     sys.exit(0)
