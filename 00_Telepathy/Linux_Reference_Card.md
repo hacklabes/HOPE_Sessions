@@ -1,4 +1,4 @@
-##Linux Command line Reference
+##Linux Command-Line Reference
 
 ###General
 <kbd>tab</kbd>:  
