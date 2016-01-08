@@ -24,7 +24,7 @@ screen_width = 640
 screen_height = 480
 screen = pygame.display.set_mode([screen_width, screen_height])
 
-threshold = 500
+threshold = 10000
 bytesStream = io.BytesIO()
 
 try:
@@ -38,10 +38,9 @@ try:
     t2 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
     t3 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-    runMean = np.random.uniform(9000.0, 50935.0,5).tolist()
     ind = 0
-    lastMean = 0
-    points = runMean
+    points = [0]*100 
+    lastTotal = 0
     while True:
         bytesStream.seek(0)
         camera.capture(bytesStream,format='jpeg', use_video_port = True)
@@ -53,25 +52,25 @@ try:
         t3 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
         frame = diffImg(t1,t2,t3)
-        runMean[ind] = cv2.countNonZero(frame)
-        mean = np.mean(runMean)
-        points[ind]=abs(mean-lastMean)
+        total = cv2.countNonZero(frame)
+        points[ind]=abs(total-lastTotal)
         xypoints = points[:ind] + len(points[ind:])*[0]
-        ind = (ind+1)%len(runMean)
-        lastMean = mean
+        ind = (ind+1)%len(points)
+        lastTotal = total
 
-        if points[ind] > threshold:
-            print "MOTION", points[ind]
-        frame = diffImg(t1,t2,t3)
+
+        if points[ind-1] > threshold:
+            print "MOTION", points[ind-1]
+
         frame = np.rot90(frame)
         frame = pygame.surfarray.make_surface(frame)
         screen.fill([0,0,0])
         screen.blit(frame, (0,0))
 
         xStep = float(screen_width) / len(xypoints)
-        xypoints = [[i*xStep, 400 - v/3] for i, v in enumerate(xypoints)]
+        xypoints = [[i*xStep, screen_height - v/30] for i, v in enumerate(xypoints)]
 
-        pygame.draw.line(screen, [255,0,0], [0, 400 - threshold/3], [screen_width,400 - threshold/3], 5)
+        pygame.draw.line(screen, [255,0,0], [0, screen_height - threshold/30], [screen_width,screen_height - threshold/30], 5)
         pygame.draw.lines(screen, [0,255,0], False, xypoints, 5)
 
         pygame.display.update()
