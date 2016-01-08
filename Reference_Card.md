@@ -36,6 +36,7 @@
 ``ifconfig``:  
 ``ssh``:  
 ``wget``:  
+``lynx``:  
 ``nc``:  
 ``wall``:  
 
