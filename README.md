@@ -19,4 +19,4 @@
   - Grab other people's camera script client/server
 - Internet
   - ~~Grab images from tumblr~~
-  - Tweets + LEDs
+  - ~~Tweets + LEDs~~
