@@ -6,9 +6,6 @@ from gpiozero import LED, Button
 import time
 import sys
 
-# sets up the video player
-omx = OMXPlayer('../movs/MechanicalPrinciples.mov')
-
 # we'll use a button to advance the slide show
 yButton = Button(6,  pull_up=False, bounce_time=0.05)
 # and an LED to make sure the button is working properly
@@ -18,6 +15,9 @@ yButton.when_released = yLed.off
 
 # we'll use another button for quitting the program (since it runs fullscreen)
 rButton = Button(19,  pull_up=False, bounce_time=0.05)
+
+# sets up the video player
+omx = OMXPlayer('../movs/MechanicalPrinciples.mov')
 
 try:
     # run this next section forever, until user stops the programme by pressing button
@@ -35,5 +35,5 @@ try:
             sys.exit(0)
 
 # this is some magic code that detects when user hits ctrl-c (and stops the programme)
-except KeyboardInterrupt, SystemExit, RuntimeError:
+except KeyboardInterrupt, SystemExit:
         sys.exit(0)
