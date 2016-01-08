@@ -34,17 +34,20 @@ def getPhoto():
             # get url for full size image
             imgUrl = post['photos'][0]['original_size']['url']
             print imgUrl
+
             # grab image bytes
             imgRequest = urllib2.urlopen(imgUrl)
             # decode bytes into an image object
             img = cv2.imdecode(np.asarray(bytearray(imgRequest.read()), dtype=np.uint8),cv2.IMREAD_COLOR)
             # convert color and orientation from openCV format to RGB
             img = np.rot90(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+
             # scale image so it fits in window
             scaleFactor = 640.0/max(img.shape[0], img.shape[1])
             newDim = (int(img.shape[1]*scaleFactor), int(img.shape[0]*scaleFactor))
             img = cv2.resize(img, newDim, interpolation = cv2.INTER_AREA)
-            # make a pygame surface from image
+
+            # return a pygame surface ready to be displayed
             return pygame.surfarray.make_surface(img)
 
 try:
