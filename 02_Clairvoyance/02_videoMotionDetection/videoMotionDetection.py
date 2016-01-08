@@ -4,6 +4,8 @@ import cv2
 import numpy as np
 import sys
 import time
+import picamera
+import io
 
 def diffImg(t0, t1, t2):
     d1 = cv2.absdiff(t2, t1)
@@ -12,28 +14,39 @@ def diffImg(t0, t1, t2):
 
 
 
-camera = cv2.VideoCapture(0)
+camera = picamera.PiCamera()
+camera.resolution = (640,480)
+
 pygame.init()
 pygame.display.set_caption("OpenCV camera stream on Pygame")
 
-screen_width = 1280
-screen_height = 720
+screen_width = 640
+screen_height = 480
 screen = pygame.display.set_mode([screen_width, screen_height])
 
 threshold = 500
+bytesStream = io.BytesIO()
 
 try:
-    t1 = cv2.cvtColor(camera.read()[1], cv2.COLOR_RGB2GRAY)
-    t2 = cv2.cvtColor(camera.read()[1], cv2.COLOR_RGB2GRAY)
-    t3 = cv2.cvtColor(camera.read()[1], cv2.COLOR_RGB2GRAY)
+    bytesStream.seek(0)
+    camera.capture(bytesStream,format='jpeg', use_video_port = True)
+    data = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
+    frame = cv2.imdecode(data,1)
 
-    runMean = np.random.uniform(9000.0, 50935.0,50).tolist()
+
+    t1 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    t2 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    t3 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+
+    runMean = np.random.uniform(9000.0, 50935.0,5).tolist()
     ind = 0
     lastMean = 0
     points = runMean
     while True:
-        frame = camera.read()[1]
-
+        bytesStream.seek(0)
+        camera.capture(bytesStream,format='jpeg', use_video_port = True)
+        data = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
+        frame = cv2.imdecode(data,1)
 
         t2 = t1
         t2 = t3

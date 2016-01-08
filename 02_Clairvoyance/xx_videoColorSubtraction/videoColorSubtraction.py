@@ -34,7 +34,7 @@ try:
         bytesStream.seek(0)
         camera.capture(bytesStream, format='jpg')
         frame = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
-        frame = cv2.imdecode(frame,0)
+        frame = cv2.imdecode(frame,1)
 
         screen.fill([255,0,0])
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
