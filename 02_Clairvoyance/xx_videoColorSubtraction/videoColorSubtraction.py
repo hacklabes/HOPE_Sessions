@@ -6,7 +6,7 @@ import picamera
 import cv2
 import numpy as np
 import sys
-
+import time
 # set up the camera
 time.sleep(1)
 camera = picamera.PiCamera()
