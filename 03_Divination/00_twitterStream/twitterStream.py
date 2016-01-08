@@ -24,6 +24,7 @@ response = api.request('statuses/filter', {'track': TRACK_TERM})
 
 # this goes through the tweets availalble in the response object
 for tweet in response:
+    # prints out their text and blinks the lights
     print(tweet['text'] if 'text' in tweet else '')
     rLed.blink(on_time=1, n=1)
     yLed.blink(on_time=1, n=1)
