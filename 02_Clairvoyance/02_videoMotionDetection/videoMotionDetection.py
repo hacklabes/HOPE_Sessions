@@ -22,6 +22,9 @@ try:
     t2 = cv2.cvtColor(camera.read()[1], cv2.COLOR_RGB2GRAY)
     t3 = cv2.cvtColor(camera.read()[1], cv2.COLOR_RGB2GRAY)
 
+    runMean = []
+    ind = 0
+    lastMean = 0
     while True:
         frame = camera.read()[1]
 
@@ -31,8 +34,15 @@ try:
         t3 = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
         frame = diffImg(t1,t2,t3)
-        print cv2.countNonZero(frame)
-
+        if len(runMean) < 100:
+            runMean.append(cv2.countNonZero(frame))
+        else:
+           runMean[ind] = cv2.countNonZero(frame)
+           ind = (ind+1)%len(runMean)
+        mean = np.mean(runMean)
+        if abs(lastMean - mean) > 200:
+            print "MOTION", abs(lastMean-mean)
+        lastMean = mean
 
         frame = diffImg(t1,t2,t3)
         frame = np.rot90(frame)
