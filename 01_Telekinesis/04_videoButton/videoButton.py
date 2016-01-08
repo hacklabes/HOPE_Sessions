@@ -31,7 +31,8 @@ try:
 
         # when quit button is pressed, stop player and quit programme
         if rButton.is_pressed:
-            raise SystemExit
+            omx.stop()
+            sys.exit(0)
 
 # this is some magic code that detects when user hits ctrl-c (and stops the programme)
 except KeyboardInterrupt, SystemExit:
