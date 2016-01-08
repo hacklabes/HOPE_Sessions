@@ -39,6 +39,8 @@ try:
     image1 = cv2.imdecode(data,1)
 
     print "Press the button for the second shot:"
+    # wait 0.5 seconds to prevent taking 2 photos with one press
+    time.sleep(0.5)
     # programme stays here until button is pressed
     button.wait_for_press()
     # stop camera preview
@@ -53,7 +55,7 @@ try:
     image2 = cv2.imdecode(data,1)
 
     # blend the two images to form a composite, double-exposure-like image
-    imageBlend = cv2.addWeighted(image1, 0.8, image2, 0.5, 0) 
+    imageBlend = cv2.addWeighted(image1, 0.5, image2, 0.5, 0)
 
     # save image as a jpg
     fname = 'PIC-'+str(int(time.time()))+'.jpg'
