@@ -34,10 +34,12 @@ img2 = np.rot90(img2)
 try:
     # keep reading the video stream into frame buffer objects
     for frameBuf in camera.capture_continuous(video, format="rgb", use_video_port=True):
-        frame = frameBuf.array
+        # convert color and orientation from openCV format to RGB
+        frame = np.rot90(cv2.cvtColor(frameBuf.array, cv2.COLOR_RGB2RGBA))
+        # resets video stream buffer
+        video.truncate(0)
 
-        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2RGBA)
-        frame = np.rot90(frame)
+        # masks out the specified color range, and replaces with parts of img2
         mask = cv2.inRange(frame, COLOR_LOW, COLOR_HIGH)
         frame_bg = cv2.bitwise_and(frame,frame,mask = cv2.bitwise_not(mask))
         img2_fg = cv2.bitwise_and(img2,img2,mask = mask)
@@ -45,9 +47,10 @@ try:
 
         # make a pygame surface from image
         surface = pygame.surfarray.make_surface(frame)
+        # prepare surface to display
         screen.blit(surface, (0,0))
+        # update screen
         pygame.display.update()
-        video.truncate(0)
 
         # stop programme if esc key has been pressed
         for event in pygame.event.get():
