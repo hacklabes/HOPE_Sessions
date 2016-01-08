@@ -12,7 +12,6 @@ import io
 time.sleep(1)
 camera = picamera.PiCamera()
 camera.resolution = (1024, 768)
-camera.start_preview(alpha=200)
 
 # set up pygame, the library for displaying images
 pygame.init()
@@ -32,12 +31,12 @@ img2 = np.rot90(img2)
 bytesStream = io.BytesIO()
 try:
     while True:
-	    bytesStream.seek(0)
-		camera.capture(bytesStream, format='jpeg')
-		data = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
-		frame = cv2.imdecode(data,1)
-  
-		screen.fill([255,0,0])
+        bytesStream.seek(0)
+        camera.capture(bytesStream, format='jpg')
+        frame = np.fromstring(bytesStream.getvalue(), dtype=np.uint8)
+        frame = cv2.imdecode(frame,0)
+
+        screen.fill([255,0,0])
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         frame = np.rot90(frame)
         mask = cv2.inRange(frame, COLOR_LOW, COLOR_HIGH)
