@@ -5,7 +5,7 @@
 <kbd>:arrow_up:</kbd>, <kbd>:arrow_down:</kbd>:  
 <kbd>ctrl</kbd>+<kbd>r</kbd>:  
 ``man``:  
-\* and *.ext:  
+``*``:  
 
 ###Navigation
 ``cd``:  
