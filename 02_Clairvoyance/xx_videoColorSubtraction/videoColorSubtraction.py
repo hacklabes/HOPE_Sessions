@@ -20,8 +20,8 @@ pygame.display.set_caption("OpenCV camera stream on Pygame")
 screen = pygame.display.set_mode(list(camera.resolution))
 
 # range of colors to become transparent
-COLOR_LOW = np.array([0,0,0,255])
-COLOR_HIGH = np.array([40,40,40,255])
+COLOR_LOW = np.array([220,220,220,255])
+COLOR_HIGH = np.array([255,255,255,255])
 
 # open background image and read pixels into a cv2 object
 img2 = cv2.imread("mm.jpg")
