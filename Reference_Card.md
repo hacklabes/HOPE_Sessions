@@ -44,3 +44,9 @@
 ``kill``:  
 ``bg``:  
 ``fg``:  
+
+###Camera/Images
+``raspistill``:  
+``raspivid``:  
+``fbi``:  
+``omxplayer``:  
