@@ -49,7 +49,7 @@ try:
     image = np.rot90(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
     # create a pygame surface from image
-    surface = pygame.surfarray.make_surface(frame)
+    surface = pygame.surfarray.make_surface(image)
     # prepare surface to display
     screen.blit(surface, (0,0))
     # update screen
