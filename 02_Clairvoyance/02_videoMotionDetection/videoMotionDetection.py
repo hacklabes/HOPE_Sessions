@@ -90,9 +90,9 @@ try:
         # prepare surface to display
         screen.blit(surface, (0,0))
 
+        # draws lines on screen showing pixel difference and threshold
         xStep = float(screen_width) / len(xypoints)
         xypoints = [[i*xStep, screen_height - v/30] for i, v in enumerate(xypoints)]
-
         pygame.draw.line(screen, [255,0,0], [0, screen_height - THRESHOLD/30], [screen_width,screen_height - THRESHOLD/30], 5)
         pygame.draw.lines(screen, [0,255,0], False, xypoints, 5)
 
