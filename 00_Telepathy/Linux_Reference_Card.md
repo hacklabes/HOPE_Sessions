@@ -36,14 +36,18 @@
 ``file``: This command is used to determine the type of a file. e.g.: ``file image.jpg``, prints out ``image.jpg: JPEG image data, JFIF standard 1.01``.  
 
 ###Text viewing/editing
-``cat``:  
-``more``:  
-``grep``:  
-``nano``:  
+``cat``: From conCATenating; this command displays a (text) file on the terminal. e.g.: ``cat poems.txt``, prints the text in ``poems.txt`` to the terminal, line by line.  ``cat poems.txt names.txt``, prints the text on both files ``poems.txt`` and ``names.txt`` to the terminal, line by line, one after the other.  
+
+``more``: This commands also displays text files on the terminal, but waits for user input before moving to the next page. e.g.: ``more poems.txt``.  
+
+``grep``: This command searches for words in text files and displays the entire line where they're found. e.g.: ``grep love poems.txt``, searches for the word *love* in the file ``poems.txt`` and prints out the lines where *love* is found.  
+
+``nano``: Command line text editor. e.g.: ``nano poems.txt``, opens or creates a text file named ``poems.txt` to be edited on the command-line.  
 
 ###Disk space
-``du``:  
-``df``:  
+``du``: Disk Usage; displays how much disk space is being used by the current directory, and any directory inside the current directory. e.g.: ``du -h``, prints out disk usage information; the ``-h`` option makes it "human-readable" (using bytes instead of disk "blocks").  
+
+``df``: Disk Free; displays the ammount of space available in the whole system, and any other hard drives attached to it (USB, SD, etc). e.g.: ``df -h``, prints out available space information; the ``-h`` option, again, makes it "human-readable".  
 
 ###Networking
 ``ping``:  
@@ -53,12 +57,6 @@
 ``lynx``:  
 ``nc``:  
 ``wall``:  
-
-###Running programs
-``ps``:  
-``kill``:  
-``bg``:  
-``fg``:  
 
 ###Camera/Images
 ``raspistill``:  
