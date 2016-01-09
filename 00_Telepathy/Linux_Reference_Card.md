@@ -63,14 +63,12 @@
 ``nc``: More general than ``ping``, this command lets you send and receive any kind of message over the network. e.g.: ``nc -l 8888`` opens up a connection at port 8888 on your own computer. Anyone can connect to your computer using that port, and start transferring data, with the command ``nc 192.168.103.101 8888`` (assuming your ip is ``192.168.103.101``).
 
 ###Camera/Images
-``raspistill``:
+``raspistill``: This programme lets you take pictures using the camera, from the command-line. e.g.: ``raspistill -o image.jpg``, takes a picture and saves it as ``image.jpg``.
 
-``raspivid``:
+``raspivid``: This programme lets you record video using the camera, from the command-line. e.g.: ``raspivid -o video.mov -t 10000``, records 10 seconds of video (specified with ``-t 10000``), and saves it in a file called ``video.mov``.
 
-``fbi``:
+``fbi``: Frame Buffer Image-viewer; displays an image when working in the command line. e.g.: ``fbi image.jpg``, opens the image file named ``image.jpg``. This command doesn't work in the X environment.
 
-``gpicview``:
+``gpicview``: This programme lets you open an image while working in the X environment. e.g.: ``gpicview image.jpg``, opens the image file named ``image.jpg``. Only works while in an X environment.
 
-``xview``:
-
-``omxplayer``:
+``omxplayer``: This programme is a general media player that can be used to play video files from the command line. e.g.: ``omxplayer video.mov``, starts playing the video file called ``video.mov``. Works both in pure command line and the X environment.
