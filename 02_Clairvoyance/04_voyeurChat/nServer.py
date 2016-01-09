@@ -2,67 +2,62 @@ import threading
 import SocketServer
 
 class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
-    def updateInfo(self):
-        self.server.clients_info = []
-        for client in self.server.clients:
-            self.server.clients_info.append(client.info)
-
-    def addClient(self,client):
-        print "Add client to the list", client
-        self.server.clients.append(client)
 
     def handle(self):
-        nckname = self.request.recv(1024) #first data is the nickname
-        self.nickname = nckname.strip()
-        self.addClient(self)
+        self.connection = self.request
+        self.ip = self.client_address[0]
+        self.port = self.client_address[1]
+        self.nickname = self.request.recv(1024).strip() #first data is the nickname
+        self.server.addClient(self)
+        print "Client> ", self.server.clients, '\n'
 
-        msg = self.nickname + "<- Connected"
-        self.server.broadcast(msg)
-        print "Client> ", self.client_address
+        msg = self.nickname + "<- Connected\n"
+        self.server.sendBroadcast(self, msg)
         while True:
             data = self.request.recv(1024)
             if data:
                 dt = data.strip().split()
-
-                if len(dt[0]) >= 2:
+                if len(dt) >= 1:
                     if dt[0] == "\C":
-                        self.server.list_clients()
-                        print "CAPTURE"
-                elif dt[0]=="E" and len(dt)== 1:
-                    print "CLOSING CLIENT"
-                    self.removeClient(self)
-                    break
-                else:
-                    msg = self.nickame + "> " + data
-                    self.server.broadcast(msg)
-    def removeClient(self,client):
-        print "Remove client", client
-        try:
-            self.server.clients.remove(client)
-            self.updateInfo()
-        except Exception:
-            pass
-
+                        msgTo = dt[1]
+                        if not msgTo:
+                            self.server.list_clients()
+                            print "CAPTURE", msgTo ,'\n'
+                    elif dt[0] == "\L":
+                        #send back list of users
+                        print self.server.clients
+                        list = reduce(lambda x,y: x.nickname + '\n' + y.nickname, self.server.clients)
+                        self.server.broadcast(list)
+                    elif dt[0] == "\E":
+                        print "CLOSING CLIENT", '\n'
+                        self.server.removeClient(self)
+                        break
+                    else:
+                        msg = self.nickname + "> " + data + '\n'
+                        self.server.sendBroadcast(self, msg)
 
 class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
     daemon_threads = True
     allow_reuse_address = True
 
     def __init__(self, address, handler):
+        self.clients = {}
         SocketServer.TCPServer.__init__(self, address, handler)
-        self.clients = []
-        self.clients_info =[]
-    def broadcast(self, data):
-        print "Broadcast> " + data
-        for c in self.clients:
-            print c
-            try:
-                c.sendall(data)
-            except:
-                self.clients.remove(c)
 
-    def list_clients(self):
-        return self.clients_info
+    def addClient(self, client):
+        self.clients[client.nickname] = client
+
+    def removeClient(self,client):
+        del self.clients[client.nickname]
+
+    def nicknameExist(self,client):
+        return self.clients.has_key(client.nickname)
+
+    def sendBroadcast(self, data):
+        for c in self.clients.itervalues():
+            if not self.nickname == c.nickname:
+                print c.nickname
+                c.request.sendall(data)
 
 
 try:
