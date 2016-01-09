@@ -71,4 +71,4 @@
 
 ``gpicview``: This programme lets you open an image while working in the X environment. e.g.: ``gpicview image.jpg``, opens the image file named ``image.jpg``. Only works while in an X environment.
 
-``omxplayer``: This programme is a general media player that can be used to play video files from the command line. e.g.: ``omxplayer video.mov``, starts playing the video file called ``video.mov``. Works both in pure command line and the X environment.
+``omxplayer``: This programme is a general media player that can be used to play video files from the command line. e.g.: ``omxplayer video.mov``, starts playing the video file called ``video.mov``. Works both in pure command-line and the X environment.
