@@ -60,4 +60,6 @@
 ``raspistill``:  
 ``raspivid``:  
 ``fbi``:  
+``gpicview``:  
+``xview``:  
 ``omxplayer``:  
