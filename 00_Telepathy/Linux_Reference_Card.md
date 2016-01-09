@@ -42,7 +42,7 @@
 
 ``grep``: This command searches for words in text files and displays the entire line where they're found. e.g.: ``grep love poems.txt``, searches for the word *love* in the file ``poems.txt`` and prints out the lines where *love* is found.  
 
-``nano``: Command line text editor. e.g.: ``nano poems.txt``, opens or creates a text file named ``poems.txt` to be edited on the command-line.  
+``nano``: Command line text editor. e.g.: ``nano poems.txt``, opens a text file named ``poems.txt`` to be edited on the command-line. If the file doesn't exist, it creates an empty file to be edited.  
 
 ###Disk space
 ``du``: Disk Usage; displays how much disk space is being used by the current directory, and any directory inside the current directory. e.g.: ``du -h``, prints out disk usage information; the ``-h`` option makes it "human-readable" (using bytes instead of disk "blocks").  
