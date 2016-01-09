@@ -39,7 +39,7 @@ def waitPackages():
 thread.start_new_thread(waitPackages,())
 try:
     while True:
-        userInput = raw_input(" > ")
+        userInput = raw_input("> ")
         if userInput != '':
             dt = userInput.split()
             if dt[0] == "\C":

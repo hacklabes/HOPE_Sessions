@@ -24,10 +24,9 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
                             self.server.list_clients()
                             print "CAPTURE", msgTo ,'\n'
                     elif dt[0] == "\L":
-                        #send back list of users
-                        print self.server.clients
-                        list = reduce(lambda x,y: x.nickname + '\n' + y.nickname, self.server.clients)
-                        self.server.broadcast(list)
+                        #send list of users for the client as request
+                        list = reduce(lambda x,y: x + '\n' + y, self.server.clients.keys())
+                        self.connection.sendall(list)
                     elif dt[0] == "\E":
                         print "CLOSING CLIENT", '\n'
                         self.server.removeClient(self)
@@ -53,9 +52,9 @@ class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
     def nicknameExist(self,client):
         return self.clients.has_key(client.nickname)
 
-    def sendBroadcast(self, data):
+    def sendBroadcast(self,client, data):
         for c in self.clients.itervalues():
-            if not self.nickname == c.nickname:
+            if c.nickname != client.nickname:
                 print c.nickname
                 c.request.sendall(data)
 
