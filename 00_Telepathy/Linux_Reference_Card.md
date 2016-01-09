@@ -50,13 +50,17 @@
 ``df``: Disk Free; displays the ammount of space available in the whole system, and any other hard drives attached to it (USB, SD, etc). e.g.: ``df -h``, prints out available space information; the ``-h`` option, again, makes it "human-readable".  
 
 ###Networking
-``ping``:  
-``ifconfig``:  
-``ssh``:  
-``wget``:  
-``lynx``:  
-``nc``:  
-``wall``:  
+``lynx``: Old-school text-based web browser.
+
+``wget``: This command is used to download internet files from the command-line, without using a browser.  e.g.: ``wget http://www.fact.co.uk/images/fact/fact-logo-white.gif``, downloads the FACT logo to your computer.
+
+``ifconfig``: This command prints out information about your network connections (WiFi, cable, router information). It can be used to determine your computer's IP address (it's address on the internet or local network). e.g.: ``ifconfig``, prints out all the info; look for the ``inet addr:`` parameters.
+
+``ping``: This command sends a *hello* message to another computer, and computes how long it takes for the other computer to reply. It needs an IP address or url address as a parameter. e.g.: ``ping 192.168.103.101``, pings the local computer at address ``192.168.103.101``. ``ping fact.co.uk`` pings the server hosting FACT's website. To quit ping, hit <kbd>ctrl</kbd>+<kbd>c</kbd>.
+
+``ssh``: This command lets you actually connect to remote computers, and use their command-line to run programmes. e.g.: ``ssh pi@192.168.103.101``, would connect you to the computer with IP address ``192.168.103.101``, and log you in as user ``pi`` (given that you have the correct password).
+
+``nc``: More general than ``ping``, this command lets you send and receive any kind of message over the network. e.g.: ``nc -l 8888`` opens up a connection at port 8888 on your own computer. Anyone can connect to your computer using that port, and start transferring data, with the command ``nc 192.168.103.101 8888`` (assuming your ip is ``192.168.103.101``).
 
 ###Camera/Images
 ``raspistill``:  
