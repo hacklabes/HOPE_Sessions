@@ -14,27 +14,36 @@ import thread
 if len(sys.argv) == 1:
     print "Please add you nickname as argument"
     sys.exit(0)
+
 nickname = str(sys.argv[1])
-print "Welcome ", nickname
 
 client_socket = socket.socket()
 client_socket.connect(('localhost', 8000))
-screen = pygame.display.set_mode([1920,720])
-
-pygame.init()  # Initialize pygame
-
 client_socket.sendall(nickname.strip())
+data = client_socket.recv(1024)
 
+if data.split()[0] == "\N":
+    print "The Nickname already exist, try again"
+    client_socket.close()
+    sys.exit(0)
+
+print "Welcome ", nickname
+screen = pygame.display.set_mode([1920,720])
+pygame.init()  # Initialize pygame
 
 def waitPackages():
     while True:
         try:
-            package = client_socket.recv(1024)
-            print package
-        except Exception:
+            data = client_socket.recv(1024)
+            if data !='':
+                dt = data.split()
+                if dt[0] == "\C":
+                    #capture
+                    print "CAPTURING"
+                else:
+                    print data
+        except Exception, SystemExit:
             print "STOP client thread"
-            break
-
 
 thread.start_new_thread(waitPackages,())
 try:
@@ -52,7 +61,7 @@ try:
                     print "TYPE \C YourFriendNickname"
             elif dt[0]  == "\E":
                 client_socket.sendall("\E")
-                raise KeyboardInterrupt
+                raise SystemExit
             else:
                 client_socket.sendall(userInput);
         else:
