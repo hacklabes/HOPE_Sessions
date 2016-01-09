@@ -71,24 +71,24 @@ try:
         # count pixels that are different between the 3 frames
         total = cv2.countNonZero(frame)
 
-        # adds value to list of points to be drawn
+        # make a pygame surface from image
+        surface = pygame.surfarray.make_surface(frame)
+        # prepare surface to display
+        screen.blit(surface, (0,0))
+
+        # adds pixel difference value to list of points to be drawn
         points[ind]=abs(total-lastTotal)
+        # keep number of different pixels to detect motion on next frame
+        lastTotal = total
+
         # if motion was detected, print message on comand line
         if points[ind] > THRESHOLD:
             print "MOTION", points[ind]
 
         # prepare points to be drawn
         xypoints = points[:ind] + len(points[ind:])*[0]
-
-        # update current index
+        # update current index of points
         ind = (ind+1)%len(points)
-        # keep number of different pixels to detect motion on next frame
-        lastTotal = total
-
-        # make a pygame surface from image
-        surface = pygame.surfarray.make_surface(frame)
-        # prepare surface to display
-        screen.blit(surface, (0,0))
 
         # draws lines on screen showing pixel difference and threshold
         xStep = float(screen_width) / len(xypoints)
@@ -104,6 +104,8 @@ try:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 raise SystemExit
 
+# this is some magic code that detects when user hits ctrl-c (and stops the programme)
 except KeyboardInterrupt,SystemExit:
     pygame.quit()
     cv2.destroyAllWindows()
+    sys.exit(0)
