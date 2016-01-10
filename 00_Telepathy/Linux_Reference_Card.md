@@ -22,7 +22,12 @@
 
 ``locate``: Finds files in computer without starting at current directory. e.g.: ``locate *.jpg``, finds all jpg image files in the filesystem.
 
+
+``.`:The single period refers to your working directory, where you actually is
+
 ``..``: The double period is used to represent previous (parent) directory. e.g.: ``cd ..``, goes out from the current directory, and up to the directory that contains the current directory.
+
+``/``: The single slash refers to the root directory, where your filesystem tree starts
 
 ###File operations
 ``cp``: Copy; this command copies files. If there's already a file with the name given, that file is overwritten (deleted). e.g.: ``cp image.jpg copy.jpg``, makes a copy of the file ``image.jpg``, and names the copy ``copy.jpg``.
