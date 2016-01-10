@@ -46,7 +46,7 @@ pi@hope01 ~ $ ls -la /usr/bin
 
 1. Check where you are with ``pwd``
 2. Explore files types around with the command ```file```
-3. Explore files content with the command ``less``` 
+3. Explore files content with the command ``more`` 
 4. List files from other directories
 5. Try the command ``grep`` to search things inside files
 
@@ -54,11 +54,11 @@ pi@hope01 ~ $ ls -la /usr/bin
 
 1. Create a directory using ``mkdir``
 2. Move yourself to the directory you just created using ``cd``
-3. Confirms that where you are using ``pwd```
+3. Confirms where you are using ``pwd```
 4. Fell free to create other directories inside the new one
 5. Remove some of your folders using ``rm``
 6. Copy and move directories (DO IT ONLY HERE, BE CAREFUL WITH THE SYSTEM FILES)
-
+7. Create a text file using the command ``nano``
 
 
 
