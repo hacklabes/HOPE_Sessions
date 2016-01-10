@@ -23,13 +23,32 @@ print "Start sending your nickname"
 #screen = pygame.display.set_mode([1920,720])
 #pygame.init()  # Initialize pygame
 
+def sendData(socket, data):
+
+    socket.sendall(struct.pack('<L', len(data))) #size of my data
+    socket.sendall(data)
+    socket.sendall(struct.pack('<L', 0)) #size of my data
+
+def receiveData(socket):
+    size = struct.unpack('<L', socket.recv(struct.calcsize('<L')))[0]
+    if size > 0:
+        data = ''
+        while len(data) < size:
+            packet = socket.recv(size-len(data))
+            if not packet:
+                break
+            data += packet
+        return data
+    return ''
+
 while True:
     try:
         nickname = raw_input("Insert Nickname > ")
         if len(nickname.strip()) > 3:
-            client_socket.sendall("\N")
-            client_socket.sendall(nickname.strip())
-            data = client_socket.recv(1024)
+            sendData(client_socket, "\N")
+            sendData(client_socket, nickname.strip())
+            data = receiveData(client_socket)
+
             if data.split()[0] == "\N":
                 print "The Nickname already exist or it's to short, try again"
             elif data.split()[0] == "OK":
@@ -42,7 +61,7 @@ while True:
 def waitPackages():
     while True:
         try:
-            data = client_socket.recv(1024)
+            data = receiveData(client_socket)
             if len(data) > 0:
                 dt = data.split()
                 if dt[0] == "\C":
@@ -72,17 +91,16 @@ while True:
                 if len(dt) >= 2:
                     nickname = dt[1]
                     print "CAPTURE ", nickname
-                    client_socket.sendall("\C")
-                    client_socket.sendall(nickname)
+                    sendData(client_socket, "\C")
+                    sendData(client_socket, nickname)
                     #----now wait for the IMAGE
                 else:
                     print "TYPE \C YourFriendNickname"
             elif dt[0]  == "\E":
-                #send disconnection
-                client_socket.sendall("\E")
+                sendData(client_socket, "\E")
                 raise SystemExit
             else:
-                client_socket.sendall(userInput);
+                sendData(client_socket, userInput)
         else:
             print "\n"
             print "Type your message or:"

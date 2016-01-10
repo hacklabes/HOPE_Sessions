@@ -1,40 +1,55 @@
 import threading
 import SocketServer
 import logging
-
+import struct
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("voyeurChatServer")
 
+
 class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
+    def sendData(self, data):
+        print "sendinding ", self
+        self.request.sendall(struct.pack('<L', len(data))) #size of my data
+        self.request.sendall(data)
+        self.request.sendall(struct.pack('<L', 0)) #size of my data
+
+    def receiveData(self):
+
+        size = struct.unpack('<L', self.request.recv(struct.calcsize('<L')))[0]
+        if size > 0:
+            data = ''
+            while len(data) < size:
+                packet = self.request.recv(size-len(data))
+                if not packet:
+                    break
+                data += packet
+            return data
+        return ''
+
 
     def handle(self):
         self.connection = self.request
         self.ip = self.client_address[0]
         self.port = self.client_address[1]
-        self.nickname = self.ip
-        if self.server.nicknameExist(self.nickname):
-            log.info("Client Exist error")
-            self.connection.sendall("\N") #nickname errro
-            return False
+        self.nickname = self.ip + ":" + str(self.port)
         self.server.addClient(self)
         log.info("Client connect - %s", self.client_address)
-
         while True:
             try:
-                data = self.request.recv(1024).strip()
+                data = self.receiveData()
                 if data.split()[0] == "\N":
-                    nn = self.request.recv(1024).strip()
+                    nn = self.receiveData().strip()
                     if not self.server.nicknameExist(nn) and len(nn) > 3:
                         log.info("Updated nickname - %s", nn)
                         self.server.updateNickname(self, nn)
-                        self.connection.sendall("OK") #nickname errr
+                        self.sendData("OK") #nickname errr
                         break
                     else:
-                        self.connection.sendall("\N")
-                        log.info("Erro updating nickname")
+                        self.sendData("\N")
+                        log.info("Error updating nickname")
             except:
-                log.info("Error gettin nickname")
+                log.info("Error getting nickname")
                 break
 
         msg = self.nickname + "> Connected"
@@ -42,20 +57,20 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
 
         while True:
             try:
-                data = self.request.recv(1024)
+                data = self.receiveData()
                 if data:
                     dt = data.strip().split()
                     if len(dt) > 1:
                         if dt[0] == "\C":
-                            nickname = self.request.recv(1024)
+                            nickname = self.receiveData()
                             if self.server.nicknameExist(nickname):
-                                log.info("Capture - %s", msgTo)
+                                log.info("Capture - %s", nickname)
                         elif dt[0] == "\L":
                             #send list of users for the client as request
                             list = "==== Users ====\n"
                             list += reduce(lambda x,y: x + "\n" + y, self.server.clients.keys())
                             list += "\n==============="
-                            self.connection.sendall(list)
+                            self.sendData(list)
                         elif dt[0] == "\E":
                             self.server.sendBroadcast(self, self.nickname + "> Disconnected")
                             log.info("Closing Client - %s", self.client_address)
@@ -89,7 +104,7 @@ class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
     def sendBroadcast(self,client, data):
         for c in self.clients.itervalues():
             if c.nickname != client.nickname:
-                c.request.sendall(data)
+                c.sendData(data)
 
     def addClient(self, client):
         if self.nicknameExist(client.nickname):
