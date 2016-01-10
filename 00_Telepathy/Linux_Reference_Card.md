@@ -18,7 +18,7 @@
 
 ``pwd``: Print Working Directory; this command prints the absolute path of the directory where the user is.
 
-``find``: Finds files starting from a specified directory. e.g.: ``find some-directory -name *.jpg``, finds all jpg image files inside ``some-directory`` and inside every directory inside ``some-directory``.
+``find``: Finds files starting from a specified directory. e.g.: ``find some-directory -name "*.jpg"``, finds all jpg image files inside ``some-directory`` and inside every directory inside ``some-directory``.
 
 ``locate``: Finds files in computer without starting at current directory. e.g.: ``locate *.jpg``, finds all jpg image files in the filesystem.
 
