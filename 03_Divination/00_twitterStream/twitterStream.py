@@ -18,6 +18,9 @@ TRACK_TERM = '#jesus'
 api = TwitterAPI(CONSUMER_KEY,CONSUMER_SECRET,
                  ACCESS_TOKEN_KEY,ACCESS_TOKEN_SECRET)
 
+# print a welcome message
+print "Connected to Twitter. Searching for: %s"%TRACK_TERM
+
 # this is the responseobject from twitter.
 # it gets updated everytime a new tweet comes in with the TRACK_TERMs
 response = api.request('statuses/filter', {'track': TRACK_TERM})
