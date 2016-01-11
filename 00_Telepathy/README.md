@@ -79,8 +79,6 @@ pi@hope01 ~ $ ls -la /usr/bin
 ####Extras
 
 1. Check how much space available you have using ``df -h``
-2. 
-
 
 
 ####References:
