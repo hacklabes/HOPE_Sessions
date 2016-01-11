@@ -54,14 +54,26 @@ pi@hope01 ~ $ ls -la /usr/bin
 
 1. Create a directory using ``mkdir``
 2. Move yourself to the directory you just created using ``cd``
-3. Confirms where you are using ``pwd```
+3. Confirms where you are using ``pwd``
 4. Fell free to create other directories inside the new one
 5. Remove some of your folders using ``rm``
 6. Copy and move directories (DO IT ONLY HERE, BE CAREFUL WITH THE SYSTEM FILES)
 7. Create a text file using the command ``nano``
 
 
+####Network
 
+1. 
+2. ``fbi```
+
+
+
+
+
+####Extras
+
+1. Check how much space available you have using ``df -h```
+2. 
 
 
 
