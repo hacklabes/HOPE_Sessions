@@ -63,10 +63,19 @@ pi@hope01 ~ $ ls -la /usr/bin
 
 ####Network
 
-1. 
-2. ``fbi```
+1.Let's browse old schooll ``lynx WEBSITE``
+2. Starting download a file from the internet using ``wget``
+3. Check your file, use ``ls``, ``file``
+4. If you download an image you can use ``fbi`` to visualize it
 
+Connecting to your neighborhood 
 
+5. Find your IP Address using ``ifconfig``
+6. Find your hostname using ``hostname``
+7. Ask neighborhood their IP address or their hostname
+8. ``ping IP_ADDRESS`` or ``ping HOSTNAME.local`` see if their are alive 
+9. Start a chat be the Server: ``nc -l PORT`` or be the Client: ``nc IP_ADDRESS PORT``
+10. Connect remotely to another computer ``ssh pi@HOSTNAME.local`` or ``ssh pi@IP_ADDRESS``
 
 
 
