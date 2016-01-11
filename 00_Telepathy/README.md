@@ -62,18 +62,19 @@ pi@hope01 ~ $ ls -la /usr/bin
 ####Network
 
 1. Let's browse old-school ``lynx http://www.google.com``
-2. Download a file from the internet using ``wget http://www.fact.co.uk/images/fact/fact-logo-white.gif``
-3. Check your file using ``ls`` and ``file``
-4. If you downloaded an image you can use ``fbi`` to visualize it
+3. Try do install a new software using ``sudo apt-get install cowsay``
+4. Download a file from the internet using ``wget http://www.fact.co.uk/images/fact/fact-logo-white.gif``
+5. Check your file using ``ls`` and ``file``
+6. If you downloaded an image you can use ``fbi`` to visualize it
 
 #####Connecting to your neighbor
 
-5. Find your IP Address using ``ifconfig``
-6. Find your hostname using ``hostname``
-7. Ask neighbor for their IP address or their hostname
-8. ``ping IP_ADDRESS`` or ``ping HOSTNAME.local`` to see if they are on the network
-9. Start a chat as the Server: ``nc -l PORT``, or as the Client: ``nc IP_ADDRESS PORT``
-10. Connect remotely to another computer ``ssh pi@HOSTNAME.local`` or ``ssh pi@IP_ADDRESS``
+7. Find your IP Address using ``ifconfig``
+8. Find your hostname using ``hostname``
+9. Ask neighbor for their IP address or their hostname
+10. ``ping IP_ADDRESS`` or ``ping HOSTNAME.local`` to see if they are on the network
+11. Start a chat as the Server: ``nc -l PORT``, or as the Client: ``nc IP_ADDRESS PORT``
+12. Connect remotely to another computer ``ssh pi@HOSTNAME.local`` or ``ssh pi@IP_ADDRESS``
 
 
 ####Extras
