@@ -39,7 +39,6 @@ pi@hope01 ~ $ ls -la /usr/bin
 
 ###Exercises
 
-
 ####Looking Around
 
 1. Check where you are with ``pwd``
@@ -76,10 +75,30 @@ pi@hope01 ~ $ ls -la /usr/bin
 11. Start a chat as the Server: ``nc -l PORT``, or as the Client: ``nc IP_ADDRESS PORT``
 12. Connect remotely to another computer ``ssh pi@HOSTNAME.local`` or ``ssh pi@IP_ADDRESS``
 
-
 ####Extras
 
 1. Check how much space available you have using ``df -h``
+
+
+###New Flow
+
+####Simple
+
+1. Check where you are with ``pwd``
+2. Find all images on your path ``find . -name "*jpg"``
+3. Go inside the folder where you did finde the images ``cd FOLDER_NAME``
+4. Open the image ``fbi IMAGE_NAME.jpg``
+5. Go back your home directory
+
+#####Connecting to your neighbor
+
+1. Find your IP Address using ``ifconfig``
+2. Ask neighbor for their IP address
+3. Connect remotely to another computer ``ssh pi@UR_FRIEND_IP_ADDRESS`` type ``yes`` then the ``username``and the ``password``
+4. Grab a picture ``raspistill -o image.jpg``
+5. Go back to your computer type ``exit```
+6. Copy the picture from your friend computer to your computer ``scp pi@UR_FRIEND_IP_ADDRESS:image.jpg .`` 
+7. Open the picture ``fbi image.jpg``
 
 
 ####References:
