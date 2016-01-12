@@ -1,5 +1,7 @@
 ##Telepathy
 
+Linux: Open-Source, control, ownership, 
+
 1. Power-UP your Raspberypi
 2. Login with the unsername ``pi`` and password ``pi``
 
