@@ -64,6 +64,10 @@
 
 ``ssh``: This command lets you actually connect to remote computers, and use their command-line to run programmes. e.g.: ``ssh pi@192.168.103.101``, would connect you to the computer with IP address ``192.168.103.101``, and log you in as user ``pi`` (given that you have the correct password).
 
+``scp``: This command lets you copy files from a remote computer, using the command-line. e.g.: ``scp pi@192.168.103.101:*.jpg .``, would connect to the computer with IP address ``192.168.103.101``, and copy every jpg image file in that computer's home directory to the current directory.
+
+``wall``: Write to ALL; this command lets you send messages to all users currently logged into the computer. e.g.: ``wall hello there``, sends the message ``hello there`` to all users currently logged in.
+
 ``nc``: More general than ``ping``, this command lets you send and receive any kind of message over the network. e.g.: ``nc -l 8888`` opens up a connection at port 8888 on your own computer. Anyone can connect to your computer using that port, and start transferring data, with the command ``nc 192.168.103.101 8888`` (assuming your ip is ``192.168.103.101``).
 
 ###Camera/Images
