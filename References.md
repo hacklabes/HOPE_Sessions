@@ -1,4 +1,21 @@
-## References
+# Artist References
+
+* http://0100101110101101.org/works/
+* http://www.emohr.com/
+* http://constantdullaart.com/
+* http://www.evan-roth.com/
+* http://datenform.de/
+* http://www.lozano-hemmer.com/
+
+
+### Galeries
+
+* http://www.carrollfletcher.com/
+* http://www.bitforms.com/
+* http://www.postmastersart.com/
+* http://www.pacegallery.com/
+
+## Coding References
 
 
 * https://stackoverflow.com/questions/20820602/image-send-via-tcp
